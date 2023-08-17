@@ -1,17 +1,30 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
 import './index.css'
+import App from './App'
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import Home from './components/Home/Home.jsx';
+import MainLayout from './components/Layout/MainLayout.jsx';
+import OrderReview from './components/OrderReview/OrderReview.jsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home/>
+    element: <MainLayout/>,
+    children: [
+      {
+        path: '/',
+        element: <Home/>,
+        loader: ()=> fetch('tshirt.json')
+      },
+      {
+        path: '/review',
+        element: <OrderReview/>
+      }
+    ]
   }
 ])
 
