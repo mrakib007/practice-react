@@ -32,7 +32,7 @@ app.get("/categories/:id", (req, res) => {
   if (id === 0) { 
     res.send(news);
   } else {
-    const categoryNews = news.filter((n) => parseInt(n._id ) === id);
+    const categoryNews = news.filter((n) => parseInt(n.category_id) === id);
     res.send(categoryNews);
   }
 });
